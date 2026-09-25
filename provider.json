@@ -1,0 +1,10 @@
+{
+  "mode": "auto",
+  "officialPortal": "https://results.asiangames2026.org/",
+  "scheduleUrl": "",
+  "medalsUrl": "",
+  "resultsUrl": "",
+  "athletesUrl": "",
+  "headers": {},
+  "notes": "Populate endpoint URLs after running tools/discover-bornan-endpoints.mjs. Leave blank to use safe local fallback."
+}
