@@ -1,0 +1,13 @@
+{
+  "name": "asiad20-vietnam-tracker-v2",
+  "private": true,
+  "version": "2.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "discover": "node tools/discover-bornan-endpoints.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}

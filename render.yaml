@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: asiad20-vietnam-homnay
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.14.1

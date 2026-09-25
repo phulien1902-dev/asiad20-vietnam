@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "label": "Dữ liệu demo V1.3",
+    "sourceMode": "demo",
+    "lastUpdated": "2026-09-24T10:55:00+07:00"
+  },
+  "vietnam": {"rank": 7, "gold": 5, "silver": 3, "bronze": 7, "total": 15},
+  "sports": ["Cầu lông", "Bơi lội", "Bóng bàn", "Judo", "Điền kinh", "Bóng chuyền", "Taekwondo", "Cử tạ", "Bắn súng"],
+  "sportDetails": [
+    {"name":"Cầu lông","icon":"🏸","category":"Môn vợt","venue":"Aichi Sky Expo Hall A","description":"Theo dõi các nội dung đơn và đôi, lịch thi đấu, kết quả và VĐV Việt Nam.","vietnamNote":"Trang này ưu tiên các trận có VĐV Việt Nam và các nội dung đã đánh dấu yêu thích."},
+    {"name":"Bơi lội","icon":"🏊","category":"Thể thao dưới nước","venue":"Nagoya Aquatic Center","description":"Tổng hợp vòng loại, bán kết và chung kết các nội dung bơi.","vietnamNote":"Hiển thị làn bơi, thành tích và thứ hạng khi có dữ liệu chính thức."},
+    {"name":"Judo","icon":"🥋","category":"Võ thuật","venue":"Aichi Prefectural Martial Arts Hall","description":"Theo dõi các hạng cân Judo và hành trình của VĐV Việt Nam.","vietnamNote":"Có thể bật nhắc trước giờ thi đấu cho từng hạng cân."},
+    {"name":"Điền kinh","icon":"🏃","category":"Điền kinh","venue":"Mizuho Stadium","description":"Theo dõi vòng loại, bán kết, chung kết và thành tích theo nội dung.","vietnamNote":"Ưu tiên các nội dung Việt Nam góp mặt."},
+    {"name":"Bóng chuyền","icon":"🏐","category":"Môn đồng đội","venue":"Nagoya Arena","description":"Lịch vòng bảng, tỷ số và thứ hạng của các đội.","vietnamNote":"Có thể theo dõi riêng đội tuyển nữ Việt Nam."},
+    {"name":"Taekwondo","icon":"🥋","category":"Võ thuật","venue":"Nagoya Combat Hall","description":"Tổng hợp lịch đấu, nhánh đấu và huy chương theo hạng cân.","vietnamNote":"Ưu tiên VĐV và kết quả của Việt Nam."},
+    {"name":"Cử tạ","icon":"🏋️","category":"Sức mạnh","venue":"Aichi Weightlifting Hall","description":"Theo dõi mức tạ, tổng cử và thứ hạng chung cuộc.","vietnamNote":"Hiển thị thành tích từng VĐV Việt Nam khi kết nối dữ liệu thật."},
+    {"name":"Bắn súng","icon":"🎯","category":"Bắn súng","venue":"Aichi Shooting Range","description":"Theo dõi vòng loại và chung kết các nội dung súng trường, súng ngắn.","vietnamNote":"Ưu tiên thành tích và thứ hạng của xạ thủ Việt Nam."}
+  ],
+  "athletes": [
+    {"name":"Nguyễn Thùy Linh","avatar":"🏸","sport":"Cầu lông","gender":"Nữ","birthYear":1997,"height":"—","team":"Đội tuyển Cầu lông Việt Nam","hometown":"Việt Nam","highlights":["VĐV đơn nữ Việt Nam","Hồ sơ minh họa V1.3 – sẽ thay bằng dữ liệu chính thức"]},
+    {"name":"Nguyễn Thị Thanh Thủy","avatar":"🥋","sport":"Judo","gender":"Nữ","birthYear":"—","height":"—","team":"Đội tuyển Judo Việt Nam","hometown":"Việt Nam","highlights":["Thi đấu hạng 63kg nữ","Dữ liệu hồ sơ hiện là minh họa"]},
+    {"name":"Trần Văn Lâm","avatar":"🏃","sport":"Điền kinh","gender":"Nam","birthYear":"—","height":"—","team":"Đội tuyển Điền kinh Việt Nam","hometown":"Việt Nam","highlights":["Thi đấu 400m rào nam","Dữ liệu hồ sơ hiện là minh họa"]},
+    {"name":"Nguyễn Thị Thu Hiền","avatar":"🥋","sport":"Taekwondo","gender":"Nữ","birthYear":"—","height":"—","team":"Đội tuyển Taekwondo Việt Nam","hometown":"Việt Nam","highlights":["Thi đấu hạng 49kg nữ","Dữ liệu hồ sơ hiện là minh họa"]},
+    {"name":"Phạm Minh Tuấn","avatar":"🏋️","sport":"Cử tạ","gender":"Nam","birthYear":"—","height":"—","team":"Đội tuyển Cử tạ Việt Nam","hometown":"Việt Nam","highlights":["Thi đấu hạng 61kg nam","Dữ liệu hồ sơ hiện là minh họa"]},
+    {"name":"Lê Thành Tùng","avatar":"🎯","sport":"Bắn súng","gender":"Nam","birthYear":"—","height":"—","team":"Đội tuyển Bắn súng Việt Nam","hometown":"Việt Nam","highlights":["Thi đấu 10m súng ngắn nam","Dữ liệu hồ sơ hiện là minh họa"]}
+  ],
+  "live": [
+    {"id":"live-1","date":"2026-09-24","status":"live","icon":"🏸","sport":"Cầu lông","event":"Đơn nữ - Vòng 1/16","vn":"Nguyễn Thùy Linh","opponent":"Y. Yamaguchi","score":"1 - 0","detail":"Game 2: 11 - 8","time":"09:30","venue":"Aichi Sky Expo Hall A"},
+    {"id":"live-2","date":"2026-09-24","status":"live","icon":"🏊","sport":"Bơi lội","event":"200m tự do nữ - Vòng loại","vn":"VĐV Việt Nam","opponent":"","score":"Đang thi đấu","detail":"Làn 4","time":"10:15","venue":"Nagoya Aquatic Center"}
+  ],
+  "upcoming": [
+    {"id":"up-1","date":"2026-09-24","status":"upcoming","icon":"🥋","sport":"Judo","event":"63kg nữ - Vòng 1/16","athlete":"Nguyễn Thị Thanh Thủy","time":"13:30","venue":"Aichi Prefectural Martial Arts Hall"},
+    {"id":"up-2","date":"2026-09-24","status":"upcoming","icon":"🏃","sport":"Điền kinh","event":"400m rào nam - Vòng loại","athlete":"Trần Văn Lâm","time":"15:00","venue":"Mizuho Stadium"},
+    {"id":"up-3","date":"2026-09-24","status":"upcoming","icon":"🏐","sport":"Bóng chuyền","event":"Nữ - Vòng bảng","athlete":"Đội tuyển Việt Nam","time":"18:00","venue":"Nagoya Arena"},
+    {"id":"up-4","date":"2026-09-25","status":"upcoming","icon":"🏸","sport":"Cầu lông","event":"Đôi nam - Vòng 1/8","athlete":"Đôi Việt Nam","time":"09:00","venue":"Aichi Sky Expo Hall A"},
+    {"id":"up-5","date":"2026-09-25","status":"upcoming","icon":"🥋","sport":"Taekwondo","event":"49kg nữ - Vòng loại","athlete":"VĐV Việt Nam","time":"14:20","venue":"Nagoya Combat Hall"}
+  ],
+  "latest": [
+    {"id":"done-1","date":"2026-09-24","status":"done","icon":"🥋","sport":"Taekwondo","event":"49kg nữ - Vòng 1/16","athlete":"Nguyễn Thị Thu Hiền","time":"08:20","venue":"Nagoya Combat Hall","result":"HCĐ"},
+    {"id":"done-2","date":"2026-09-24","status":"done","icon":"🏋️","sport":"Cử tạ","event":"61kg nam - Chung kết","athlete":"Phạm Minh Tuấn","time":"08:45","venue":"Aichi Weightlifting Hall","result":"4/8"},
+    {"id":"done-3","date":"2026-09-23","status":"done","icon":"🎯","sport":"Bắn súng","event":"10m súng ngắn nam - Vòng loại","athlete":"Lê Thành Tùng","time":"16:10","venue":"Aichi Shooting Range","result":"Hạng 7"}
+  ],
+  "medals": [
+    {"rank":1,"country":"🇨🇳 Trung Quốc","gold":88,"silver":65,"bronze":42,"total":195},
+    {"rank":2,"country":"🇯🇵 Nhật Bản","gold":45,"silver":38,"bronze":44,"total":127},
+    {"rank":3,"country":"🇰🇷 Hàn Quốc","gold":38,"silver":35,"bronze":52,"total":125},
+    {"rank":4,"country":"🇮🇳 Ấn Độ","gold":20,"silver":28,"bronze":37,"total":85},
+    {"rank":5,"country":"🇺🇿 Uzbekistan","gold":18,"silver":16,"bronze":25,"total":59},
+    {"rank":7,"country":"🇻🇳 Việt Nam","gold":5,"silver":3,"bronze":7,"total":15,"isVietnam":true}
+  ]
+}
