@@ -430,30 +430,128 @@ function pickByPath(flat, patterns){
 }
 
 function medalCountsFromRow(row){
-  const flat=flattenScalars(row);
-  let gold=n(pickByPath(flat,[/(^|\.)(gold|g)(\.|$)/, /gold.*(count|medal|total|value)/, /(count|medal|total|value).*gold/])),
-      silver=n(pickByPath(flat,[/(^|\.)(silver|s)(\.|$)/, /silver.*(count|medal|total|value)/, /(count|medal|total|value).*silver/])),
-      bronze=n(pickByPath(flat,[/(^|\.)(bronze|b)(\.|$)/, /bronze.*(count|medal|total|value)/, /(count|medal|total|value).*bronze/]));
+  // Bornan AG2026 official medal standings:
+  // Count.ME_GOLD.total
+  // Count.ME_SILVER.total
+  // Count.ME_BRONZE.total
+  // M/W/X are category breakdowns, not the overall totals.
 
-  // Bornan sometimes returns a medal array/object rather than direct scalar counts.
-  function walkMedals(x){
-    if(!x||typeof x!=="object") return;
-    if(Array.isArray(x)){ for(const y of x) walkMedals(y); return; }
-    const m=lowerKeys(x);
-    const type=String(m.type??m.code??m.medal??m.name??m.desc??m.description??"").toUpperCase();
-    const count=n(m.count??m.value??m.total??m.number??m.qty??m.quantity??0);
-    if(type.includes("GOLD") && count) gold=Math.max(gold,count);
-    if(type.includes("SILVER") && count) silver=Math.max(silver,count);
-    if(type.includes("BRONZE") && count) bronze=Math.max(bronze,count);
-    for(const v of Object.values(x)) if(v&&typeof v==="object") walkMedals(v);
+  const bornanCount = row?.Count || row?.count;
+
+  if (bornanCount && typeof bornanCount === "object") {
+    const gold = n(
+      bornanCount?.ME_GOLD?.total ??
+      bornanCount?.me_gold?.total ??
+      0
+    );
+
+    const silver = n(
+      bornanCount?.ME_SILVER?.total ??
+      bornanCount?.me_silver?.total ??
+      0
+    );
+
+    const bronze = n(
+      bornanCount?.ME_BRONZE?.total ??
+      bornanCount?.me_bronze?.total ??
+      0
+    );
+
+    if (gold || silver || bronze) {
+      return {
+        gold,
+        silver,
+        bronze,
+        total: gold + silver + bronze
+      };
+    }
   }
+
+  const flat = flattenScalars(row);
+
+  let gold = n(
+    pickByPath(flat,[
+      /(^|\.)(gold|g)(\.|$)/,
+      /gold.*(count|medal|total|value)/,
+      /(count|medal|total|value).*gold/
+    ])
+  );
+
+  let silver = n(
+    pickByPath(flat,[
+      /(^|\.)(silver|s)(\.|$)/,
+      /silver.*(count|medal|total|value)/,
+      /(count|medal|total|value).*silver/
+    ])
+  );
+
+  let bronze = n(
+    pickByPath(flat,[
+      /(^|\.)(bronze|b)(\.|$)/,
+      /bronze.*(count|medal|total|value)/,
+      /(count|medal|total|value).*bronze/
+    ])
+  );
+
+  function walkMedals(x){
+    if(!x || typeof x !== "object") return;
+
+    if(Array.isArray(x)){
+      for(const y of x) walkMedals(y);
+      return;
+    }
+
+    const m = lowerKeys(x);
+
+    const type = String(
+      m.type ??
+      m.code ??
+      m.medal ??
+      m.name ??
+      m.desc ??
+      m.description ??
+      ""
+    ).toUpperCase();
+
+    const count = n(
+      m.total ??
+      m.count ??
+      m.value ??
+      m.number ??
+      m.qty ??
+      m.quantity ??
+      0
+    );
+
+    if(type.includes("GOLD") && count) {
+      gold = Math.max(gold,count);
+    }
+
+    if(type.includes("SILVER") && count) {
+      silver = Math.max(silver,count);
+    }
+
+    if(type.includes("BRONZE") && count) {
+      bronze = Math.max(bronze,count);
+    }
+
+    for(const v of Object.values(x)){
+      if(v && typeof v === "object") {
+        walkMedals(v);
+      }
+    }
+  }
+
   walkMedals(row);
 
-  // V1.9.4: Bornan's payload contains another numeric field that V1.9.3
-  // could mistake for total medals. Never trust an ambiguous `total` key here.
-  // The medal-table total is defined deterministically as Gold + Silver + Bronze.
-  const total=gold+silver+bronze;
-  return {gold,silver,bronze,total};
+  const total = gold + silver + bronze;
+
+  return {
+    gold,
+    silver,
+    bronze,
+    total
+  };
 }
 
 function inferOrg(row,keyHint=""){
