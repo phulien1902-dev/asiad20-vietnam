@@ -58,10 +58,97 @@ async function refresh(date=''){const rb=$('#refreshBtn');if(rb){rb.disabled=tru
 const screens=$$('.screen'),navButtons=$$('nav button');
 function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.go===id));window.scrollTo({top:0,behavior:'smooth'})}
 $$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
-$('#refreshBtn')?.addEventListener('click',()=>refresh(CURRENT_DATE));
-$('#officialBtn')?.addEventListener('click',()=>window.open(CONFIG.officialSite,'_blank','noopener'));
-$('#loadDate')?.addEventListener('click',()=>{const d=$('#dateFilter')?.value||'';refresh(d)});
-['sportFilter','statusFilter'].forEach(id=>$('#'+id)?.addEventListener('change',renderScheduleFiltered));
-$('#clearFilters')?.addEventListener('click',()=>{$('#sportFilter').value='';$('#statusFilter').value='';renderScheduleFiltered()});
-$('#enableNotify')?.addEventListener('click',requestNotifications);
-let AUTO_REFRESHING=false;setInterval(checkReminders,60000);setInterval(async()=>{if(AUTO_REFRESHING||document.hidden)return;AUTO_REFRESHING=true;try{await refresh(CURRENT_DATE)}finally{AUTO_REFRESHING=false}},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden&&APP_DATA)refresh(CURRENT_DATE)});refresh();
+$('#refreshBtn')?.addEventListener('click',()=>refresh(''));
+
+$('#officialBtn')?.addEventListener(
+  'click',
+  ()=>window.open(CONFIG.officialSite,'_blank','noopener')
+);
+
+// Chỉ khi người dùng chủ động chọn một ngày
+// thì mới tải đúng ngày đã chọn.
+$('#loadDate')?.addEventListener('click',()=>{
+  const d=$('#dateFilter')?.value||'';
+  refresh(d);
+});
+
+['sportFilter','statusFilter'].forEach(id=>
+  $('#'+id)?.addEventListener('change',renderScheduleFiltered)
+);
+
+$('#clearFilters')?.addEventListener('click',()=>{
+  $('#sportFilter').value='';
+  $('#statusFilter').value='';
+  renderScheduleFiltered();
+});
+
+$('#enableNotify')?.addEventListener(
+  'click',
+  requestNotifications
+);
+
+
+// ============================================================
+// AUTO REFRESH
+// ============================================================
+
+let AUTO_REFRESHING=false;
+
+
+// Kiểm tra nhắc lịch mỗi 60 giây
+setInterval(checkReminders,60000);
+
+
+// Tự động đồng bộ dữ liệu mỗi 60 giây
+setInterval(async()=>{
+
+  if(AUTO_REFRESHING || document.hidden){
+    return;
+  }
+
+  AUTO_REFRESHING=true;
+
+  try{
+
+    // QUAN TRỌNG:
+    // Không truyền CURRENT_DATE.
+    //
+    // Khi date = '', request sẽ là:
+    // /api/data
+    //
+    // Server sẽ tự xác định ngày hiện tại
+    // theo múi giờ Asia/Tokyo.
+    //
+    // Vì vậy khi sang ngày mới,
+    // ứng dụng sẽ tự chuyển ngày.
+    await refresh('');
+
+  }finally{
+
+    AUTO_REFRESHING=false;
+
+  }
+
+},60000);
+
+
+// Khi người dùng quay lại tab,
+// đồng bộ lại ngày hiện tại từ server.
+document.addEventListener('visibilitychange',()=>{
+
+  if(!document.hidden && APP_DATA){
+
+    refresh('');
+
+  }
+
+});
+
+
+// ============================================================
+// INITIAL LOAD
+// ============================================================
+
+// Lần mở trang đầu tiên cũng để server
+// tự xác định ngày hiện tại.
+refresh('');
